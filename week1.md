@@ -71,85 +71,41 @@ Both VMs can communicate with each other. I will SSH from the workstation to the
 ### Ubuntu Server Specifications
 
 **Command: `uname -a`**
-```bash
-Linux Ubuntu-server 6.8.0-50-generic #91-Ubuntu SMP PREEMPT_DYNAMIC Tue Nov 18 14:14:30 UTC 2025 x86_64 x86_64 x86_64 GNU/Linux
-```
-**What this shows:** Running Linux kernel version 6.8.0 on a 64-bit system. This is the kernel for Ubuntu 24.04 LTS.
+![uname command output](images/uname-a command.png)
 
-![uname output](images/uname-command.png)
-
----
+this shows running Linux kernel version 6.8.0-50 on a 64-bit (x86_64) system. This is the standard kernel for Ubuntu 24.04 LTS.
+The hostname is "Ubuntu-server" and I'm logged in as user "amuser".
 
 **Command: `free -h`**
-```bash
-              total        used        free      shared  buff/cache   available
-Mem:           4.6Gi       402Mi       4.2Gi       1.0Mi       204Mi       4.2Gi
-Swap:             0B          0B          0B
-```
+
 **What this shows:** 
-- Total RAM: 4.6GB (allocated in VirtualBox)
-- Currently using: 402MB
-- Available: 4.2GB
-- Swap space: Not configured
-
-![free command output](images/free-command.png)
-
----
+- Total RAM: 4.6GB allocated to this VM
+- Currently using: 330MB (very light usage)
+- Available memory: 4.2GB (plenty available)
+- No swap space configured (0B)
+- The system is running efficiently with minimal memory usage
 
 **Command: `df -h`**
-```bash
-Filesystem      Size  Used Avail Use% Mounted on
-tmpfs           471M  1016K  470M   1% /run
-/dev/sda2        49G  2.6G   44G   6% /
-tmpfs           2.3G     0  2.3G   0% /dev/shm
-tmpfs           5.0M     0  5.0M   0% /run/lock
-tmpfs           471M   12K  471M   1% /run/user/1000
-```
+
 **What this shows:**
-- 49GB virtual hard drive allocated
-- 2.6GB used by Ubuntu Server installation
-- 44GB available for applications and data
-- Only 6% disk usage - plenty of space
-
-![df command output](images/df-command.png)
-
----
+- Main filesystem (`/dev/sda2`): 49GB total virtual disk
+- Currently using: 2.7GB (6% usage)
+- Available space: 44GB 
+- Plenty of disk space remaining for applications and data
 
 **Command: `ip addr`**
-```bash
-1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
-    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
-    inet 127.0.0.1/8 scope host lo
-    valid_lft forever preferred_lft forever
-    inet6 ::1/128 scope host noprefixroute
-    valid_lft forever preferred_lft forever
 
-2: enp0s3: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
-    link/ether 08:00:27:f7:b8:fc brd ff:ff:ff:ff:ff:ff
-    inet fe80::a00:27ff:fef7:b8fc/64 scope link
-    valid_lft forever preferred_lft forever
-```
 **What this shows:**
-- Interface `enp0s3` is my network adapter
-- Connection is UP and working
-- Network interface is configured and ready for SSH
-
-![ip addr output](images/ip-addr-command.png)
-
+- `lo` (loopback): Local interface at 127.0.0.1
+- `enp0s3`: Main network interface (VirtualBox adapter)
+- Interface state: UP (active and working)
+- Network ready for SSH connections
 
 **Command: `lsb_release -a`**
-```bash
-No LSB modules are available.
-Distributor ID: Ubuntu
-Description:    Ubuntu 24.04.3 LTS
-Release:        24.04
-Codename:       noble
-```
-**What this shows:**
-- Confirmed: Ubuntu 24.04 LTS
-- Codename: Noble
-- LTS version with long-term support
 
-![lsb_release output](images/lsb-release-command.png)
+**What this shows:**
+- Confirmed running Ubuntu 24.04.3 LTS
+- Codename: "Noble Numbat"
+- LTS version with 5 years of security updates
 
 [← Back to Home](README.md) | [Next Week →](week2.md)
