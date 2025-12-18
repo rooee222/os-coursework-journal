@@ -77,7 +77,9 @@ this shows running Linux kernel version 6.8.0-50 on a 64-bit (x86_64) system. Th
 The hostname is "Ubuntu-server" and I'm logged in as user "amuser".
 
 **Command: `free -h`**
+
 ![free command output](images/free%20-h%20command.png)
+
 **What this shows:** 
 - Total RAM: 4.6GB allocated to this VM
 - Currently using: 330MB (very light usage)
@@ -87,6 +89,7 @@ The hostname is "Ubuntu-server" and I'm logged in as user "amuser".
 
 **Command: `df -h`**
 ![df command output](images/df%20-h%20command.png)
+
 **What this shows:**
 - Main filesystem (`/dev/sda2`): 49GB total virtual disk
 - Currently using: 2.7GB (6% usage)
@@ -103,6 +106,7 @@ The hostname is "Ubuntu-server" and I'm logged in as user "amuser".
 
 **Command: `lsb_release -a`**
 ![lsb_release command output](images/lsb_release%20-a%20command.png)
+
 **What this shows:**
 - Confirmed running Ubuntu 24.04.3 LTS
 - Codename: "Noble Numbat"
@@ -110,6 +114,7 @@ The hostname is "Ubuntu-server" and I'm logged in as user "amuser".
 
 ### Complete Command Output Screenshot
 Here is the full terminal session showing all commands executed:
+
 ![All commands output](images/all%20commands.png)
 
 [← Back to Home](README.md) | [Next Week →](week2.md)
