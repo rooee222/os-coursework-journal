@@ -88,6 +88,7 @@ The hostname is "Ubuntu-server" and I'm logged in as user "amuser".
 - The system is running efficiently with minimal memory usage
 
 **Command: `df -h`**
+
 ![df command output](images/df%20-h%20command.png)
 
 **What this shows:**
@@ -97,7 +98,9 @@ The hostname is "Ubuntu-server" and I'm logged in as user "amuser".
 - Plenty of disk space remaining for applications and data
 
 **Command: `ip addr`**
+
 ![ip addr command output](images/ip%20addr%20command.png)
+
 **What this shows:**
 - `lo` (loopback): Local interface at 127.0.0.1
 - `enp0s3`: Main network interface (VirtualBox adapter)
@@ -105,6 +108,7 @@ The hostname is "Ubuntu-server" and I'm logged in as user "amuser".
 - Network ready for SSH connections
 
 **Command: `lsb_release -a`**
+
 ![lsb_release command output](images/lsb_release%20-a%20command.png)
 
 **What this shows:**
