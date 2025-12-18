@@ -7,7 +7,7 @@ design the system architecture, document the network configuration, and collect 
  
 ## 1. System Architecture Diagram
 
-![System Architecture](images/architecture-week1.png)
+![System Architecture Diagram](images/system%20architecture%20diagram.png)
 
 **Architecture Description:**
 - Windows laptop hosts two VirtualBox VMs
