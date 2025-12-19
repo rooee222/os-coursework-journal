@@ -8,6 +8,7 @@ This journal documents my journey learning Linux server administration, security
 I'm configuring an Ubuntu Server system accessible only via SSH from an Ubuntu Desktop workstation.
 
 ## Table of Contents
+## Table of Contents
 - [Week 1: System Planning and Distribution Selection](week1.md)
 - [Week 2: Security Planning and Testing Methodology](week2.md)
 - [Week 3: Application Selection](week3.md)
