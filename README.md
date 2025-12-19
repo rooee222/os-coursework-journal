@@ -38,7 +38,7 @@ I'm configuring an Ubuntu Server system accessible only via SSH from an Ubuntu D
 - **Type:** Full desktop environment
 - **Purpose:** Remote administration via SSH
 - **Tools:** SSH client, monitoring utilities
-- **Hostname:** [Your workstation hostname]
+- **Hostname:** [ubuntu]
 
 ### Network Configuration
 - **Network Type:** VirtualBox Network (configured for VM-to-VM communication)
