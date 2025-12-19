@@ -68,13 +68,14 @@ I restarted the SSH service to apply changes:
 ```bash
 sudo systemctl restart sshd
 ```
+![SSH config before and after](images/ssh%20config%20before%20and%20after.png)
 
 **Viewing configuration differences:**
 ```bash
 diff /etc/ssh/sshd_config.backup /etc/ssh/sshd_config
 ```
 
-![SSH config before and after](images/week4-ssh-config-diff.png)
+![Configuration difference](images/configuration%20difference.png)
 
 
 ## 2. Firewall Configuration (UFW)
@@ -88,7 +89,7 @@ sudo ufw status
 
 Output: `Status: inactive`
 
-![Firewall inactive](images/week4-ufw-before.png)
+![Firewall inactive](images/firewall%20inactive.png)
 
 
 ### Configuring Firewall Rules
@@ -98,7 +99,6 @@ Output: `Status: inactive`
 sudo ufw default deny incoming
 sudo ufw default allow outgoing
 ```
-
 **Allow SSH from workstation only:**
 
 First, I identified my workstation IP address. Then I configured the firewall to allow SSH only from my workstation:
@@ -111,8 +111,7 @@ sudo ufw allow from [WORKSTATION_IP] to any port 22
 sudo ufw enable
 ```
 
-![UFW enable](images/week4-ufw-enable.png)
-
+![UFW enable](images/ufw%20enable.png)
 
 ### Firewall Ruleset Documentation
 
@@ -130,7 +129,7 @@ Status: active
 [ 1] 22                         ALLOW IN    [WORKSTATION_IP]
 ```
 
-![UFW status](images/week4-ufw-status.png)
+![UFW status](images/ufw%20status.png)
 
 **Verbose firewall status:**
 ```bash
@@ -142,7 +141,7 @@ This shows:
 - Default outgoing policy: allow
 - SSH allowed only from workstation IP
 
-![UFW verbose status](images/week4-ufw-verbose.png)
+![UFW verbose status](images/ufw%20verbose%20status.png)
 
 
 ## 3. User and Privilege Management
@@ -156,7 +155,7 @@ sudo adduser adminuser
 
 I set a password and accepted default values for user information.
 
-![Create adminuser](images/week4-adduser.png)
+![Create admin user](images/create%20admin%20user.png)
 
 
 ### Configuring Sudo Access
@@ -173,7 +172,7 @@ sudo -l -U adminuser
 
 This confirmed that `adminuser` can execute commands with sudo.
 
-![Verify sudo access](images/week4-sudo-verify.png)
+![Verify sudo access](images/verify%20sudo%20access.png)
 
 
 ### Testing Administrative User
@@ -204,7 +203,7 @@ ssh amuser@[192.168.0.15]
 
 Connection established without password prompt, confirming key-based authentication is working.
 
-![SSH connection success](images/week4-ssh-connection.png)
+![SSH connection success](images/ssh%20connection%20success.png)
 
 
 ## 5. Remote Administration Evidence
@@ -238,7 +237,8 @@ sudo systemctl status sshd
 sudo ufw status
 ```
 
-![Remote commands execution](images/week4-remote-commands.png)
+![Remote commands execution 1](images/remote%20commands%20execution%201.png)     ![Remote commands execution 2](images/remote%20commands%20exe%202.png)
+
 
 
 ## Security Configuration Summary
