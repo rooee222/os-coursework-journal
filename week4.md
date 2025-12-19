@@ -61,6 +61,8 @@ sudo nano /etc/ssh/sshd_config
 Changed the following lines:
 - `PasswordAuthentication no` (was `yes`)
 - `PubkeyAuthentication yes` (was commented out)
+ 
+![SSH config before and after](images/ssh%20config%20before%20and%20after.png)
 
 **After configuration:**
 
@@ -68,8 +70,6 @@ I restarted the SSH service to apply changes:
 ```bash
 sudo systemctl restart sshd
 ```
-![SSH config before and after](images/ssh%20config%20before%20and%20after.png)
-
 **Viewing configuration differences:**
 ```bash
 diff /etc/ssh/sshd_config.backup /etc/ssh/sshd_config
@@ -191,7 +191,7 @@ Output: `root`
 
 This confirms `adminuser` has administrative privileges.
 
-![Adminuser sudo test](images/week4-adminuser-sudo.png)
+![Adminuser sudo test 1](images/adminuser%20sudo%20test%201.png)    ![Adminuser sudo test 2](images/adminuser%20sudo%20test%202.png)
 
 
 ## 4. SSH Access Evidence
