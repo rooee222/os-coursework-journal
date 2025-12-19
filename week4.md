@@ -18,7 +18,7 @@ ssh-keygen -t rsa -b 4096 -C "amrita@workstation"
 
 The key was saved in the default location `/home/[username]/.ssh/id_rsa`. I chose not to use a passphrase for this lab environment.
 
-![SSH key generation](images/week4-ssh-keygen.png)
+![Generating SSH key pair](images/generating%20ssh%20key%20pair.png)
 
 
 ### Copying Public Key to Server
@@ -30,8 +30,7 @@ ssh-copy-id amuser@[192.168.0.15]
 
 This command added my public key to the server's `~/.ssh/authorized_keys` file.
 
-![SSH key copy](images/week4-ssh-copy-id.png)
-
+![Copying public key to server](images/copying%20public%20key%20to%20server.png)
 
 ### Testing Key-Based Authentication
 
@@ -40,7 +39,7 @@ I tested the connection and successfully logged in without entering a password:
 ssh amuser@[192.168.0.15]
 ```
 
-![SSH login without password](images/week4-ssh-login-test.png)
+![Testing key-based authentication](images/testing%20key%20based%20authentication.png)
 
 
 ### Disabling Password Authentication
