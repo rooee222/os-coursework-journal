@@ -122,12 +122,6 @@ sudo ufw status numbered
 
 **Firewall rules:**
 ```
-Status: active
-
-     To                         Action      From
-     --                         ------      ----
-[ 1] 22                         ALLOW IN    [WORKSTATION_IP]
-```
 
 ![UFW status](images/ufw%20status.png)
 
