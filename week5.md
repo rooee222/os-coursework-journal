@@ -310,7 +310,7 @@ echo "========================================"
 
 ### Making the Script Executable
 ```bash
-chmod +x ~/security-baseline.sh
+chmod 755 ~/security-baseline.sh
 ```
 
 ### Running the Security Baseline Script
@@ -401,7 +401,7 @@ echo "========================================"
 
 On  **workstation**:
 ```bash
-chmod +x ~/monitor-server.sh
+chmod 755 ~/monitor-server.sh
 ```
 
 ![Creating monitoring script and its output](images/creating%20monitoring%20script%20and%20its%20output.png)
