@@ -24,9 +24,12 @@ This command shows:
 - How many profiles are in complain mode
 - Which applications have active profiles
 
-![AppArmor Status 1](images/apparmor-status-1.png)
-![AppArmor Status 2](images/apparmor-status-2.png)
-![AppArmor Status 3](images/apparmor-status-3.png)
+![AppArmor status 1](images/apparmor%20status%201.png)
+
+![AppArmor status 2](images/apparmor%20status%202.png)
+
+![AppArmor status 3](images/apparmor%20status%203.png)
+
 
 ### AppArmor Configuration
 
@@ -37,8 +40,7 @@ sudo systemctl status apparmor
 
 Output should show: `active (exited)`
 
-![AppArmor Configuration](images/apparmor-configuration.png)
-
+![AppArmor configuration](images/apparmor%20configuration.png)
 
 ### Tracking Access Control Settings
 
@@ -64,7 +66,7 @@ Or check system logs:
 sudo grep -i apparmor /var/log/syslog | tail -20
 ```
 
-![AppArmor Logs](images/apparmor-logs.png)
+![AppArmor logs](images/apparmor%20logs.png)
 
 ### AppArmor Reporting
 
@@ -79,7 +81,7 @@ This provides a detailed view of:
 - Processes in complain mode
 - Processes without profiles
 
-![AppArmor Detailed Report](images/apparmor-detailed-report.png)
+![AppArmor detailed report](images/apparmor%20detailed%20report.png)
 
 ## 2. Automatic Security Updates Configuration
 
@@ -90,14 +92,15 @@ I configured the system to automatically install security updates to keep the se
 sudo apt update
 sudo apt install unattended-upgrades -y
 ```
-![Install Unattended Upgrades](images/install-unattended-upgrades.png)
+![Install unattended-upgrades](images/install%20unattended-upgrades.png)
 
 ### Enabling Automatic Updates
 ```bash
 sudo dpkg-reconfigure --priority=low unattended-upgrades
 ```
 
-![Enabling Automatic Updates](images/enabling-automatic-updates.png)
+![Enabling automatic updates](images/enabling%20automatic%20updates.png)
+
 
 ### Configuring Automatic Updates
 
@@ -111,7 +114,7 @@ Verified that this line is uncommented:
 "${distro_id}:${distro_codename}-security";
 ```
 
-![Unattended Upgrades Config](images/unattended-upgrades-config.png)
+![Unattended-upgrades config](images/unattended-upgrades%20config.png)
 
 ### Verifying Automatic Updates Configuration
 
@@ -120,13 +123,13 @@ Verified that this line is uncommented:
 cat /etc/apt/apt.conf.d/20auto-upgrades
 ```
 
-Expected output:
+output:
 ```
 APT::Periodic::Update-Package-Lists "1";
 APT::Periodic::Unattended-Upgrade "1";
 ```
 
-![Auto Updates Verification](images/auto-updates-verification.png)
+![Auto-updates verification](images/auto-updates%20verification.png)
 
 
 ### Testing Automatic Updates
@@ -148,7 +151,7 @@ sudo apt update
 sudo apt install fail2ban -y
 ```
 
-![Installing Fail2ban](images/installing-fail2ban.png)
+![Installing fail2ban](images/installing%20fail2ban.png)
 
 
 ### Configuring Fail2ban for SSH
@@ -168,8 +171,7 @@ Under the `[sshd]` section:
 - `bantime = 600` (ban for 10 minutes)
 - `findtime = 600` (time window for failed attempts)
 
-![Fail2ban SSH config](images/week5-fail2ban-config.png)
-
+![Fail2ban SSH config](images/fail2ban%20ssh%20config.png)
 
 ### Starting and Enabling Fail2ban
 ```bash
@@ -178,10 +180,9 @@ sudo systemctl enable fail2ban
 sudo systemctl status fail2ban
 ```
 
-Output should show: `active (running)`
+Output shows: `active (running)`
 
-![Fail2ban Status](images/fail2ban-status.png)
-
+![Fail2ban status](images/fail2ban%20status.png)
 
 ### Verifying Fail2ban Configuration
 
@@ -200,8 +201,7 @@ This shows:
 - Currently banned IP addresses
 - Total number of bans
 
-![Fail2ban Client Status](images/fail2ban-client-status.png)
-
+![Fail2ban client status](images/fail2ban%20client%20status.png)
 
 ## 4. Security Baseline Verification Script
 
@@ -318,8 +318,10 @@ chmod +x ~/security-baseline.sh
 ./security-baseline.sh
 ```
 
-![Security Baseline Script Output](images/security-baseline-script-output.png)
-![Security Baseline Script Output 1](images/security-baseline-script-output-1.png)
+![Security baseline script output](images/security%20baseline%20script%20output.png)
+
+![Security baseline script output 1](images/security%20baseline%20script%20output%201.png)
+
 
 ## 5. Remote Monitoring Script
 
@@ -397,12 +399,12 @@ echo "========================================"
 
 ### Making the Monitoring Script Executable
 
-On your **workstation**:
+On  **workstation**:
 ```bash
 chmod +x ~/monitor-server.sh
 ```
 
-![Creating Monitoring Script and Output](images/creating-monitoring-script-and-its-output.png)
+![Creating monitoring script and its output](images/creating%20monitoring%20script%20and%20its%20output.png)
 
 ### Running the Monitoring Script
 
@@ -413,10 +415,11 @@ On  **workstation**:
 
 This script connects to the server via SSH and collects all performance metrics remotely.
 
-![Monitoring Script Output 1](images/monitoring-script-output-1.png)
-![Output 2](images/output-2.png)
-![Output 3](images/output-3.png)
+![Monitoring script output 1](images/monitoring%20script%20output%201.png)
 
+![Output 2](images/output%202.png)
+
+![Output 3](images/output%203.png)
 
 ## Security Configuration Summary
 
