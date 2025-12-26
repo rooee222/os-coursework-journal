@@ -17,7 +17,7 @@ sudo apt install lynis -y
 
 Lynis is an open-source security auditing tool that performs in-depth security scans on Linux systems.
 
-![Installing Lynis](images/week7-install-lynis.png)
+![Install Lynis](images/install%20lynis.png)
 
 
 ### Installing Nmap Network Scanner
@@ -25,7 +25,7 @@ Lynis is an open-source security auditing tool that performs in-depth security s
 sudo apt install nmap -y
 ```
 
-![Installing Nmap](images/week7-install-nmap.png)
+![Install nmap](images/install%20nmap.png)
 
 ## 2. Lynis Security Audit - Initial Scan (Before Remediation)
 
@@ -33,6 +33,8 @@ sudo apt install nmap -y
 ```bash
 sudo lynis audit system
 ```
+![Lynis before command](images/lynis%20before%20command.png)
+
 **Lynis Security Scan Details:**
 - **Hardening Index: 64** out of 100
 - Tests performed: 268
@@ -42,16 +44,7 @@ sudo lynis audit system
 - Firewall: [V] (Verified - UFW active)
 - Malware scanner: [X] (Not installed - not critical for this environment)
 
-![Lynis results before remediation](images/week7-lynis-after.png)
-
-### Hardening Index Comparison
-
-| Metric | Before Remediation | After Remediation | Change |
-|--------|-------------------|-------------------|--------|
-| Hardening Index | 64 | 69 | 5 |
-| Tests Performed | 268 | 267 | -1 |
-| Firewall | Active | Active | ✓ |
-| Security Tools | Minimal | Enhanced | ✓ |
+![Lynis before details](images/lynis%20before%20details.png)
 
 
 ### Lynis Suggestions for Improvement
@@ -84,7 +77,9 @@ sudo cat /var/log/lynis.log | grep -i suggestion | head -20
 11. **DNS configuration check**
 12. **Install debsums:** For package verification
 
-![Lynis suggestions](images/week7-suggestions.png)
+![Lynis suggestions 1](images/lynis%20suggestions%201.png)
+![Lynis suggestions 2](images/lynis%20suggestions%202.png)
+![Lynis suggestions 3](images/lynis%20suggestions%203.png)
 
 ## 3. Security Remediation Implementation
 
@@ -102,7 +97,7 @@ sudo apt install apt-listchanges debsums libpam-tmpdir -y
 - `debsums`: Verifies installed package files against MD5 checksums
 - `libpam-tmpdir`: Sets secure $TMP and $TMPDIR for PAM sessions
 
-![Installing security tools](images/week7-install-tools.png)
+![Remediation 1](images/remediation%201.png)
 
 
 ### Remediation 2: Password Aging Policy
@@ -117,8 +112,7 @@ sudo nano /etc/login.defs
 - `PASS_MIN_DAYS 7`: Minimum days between password changes
 - `PASS_WARN_AGE 14`: Days warning before password expires
 
-![Password aging configuration](images/week7-password-aging.png)
-
+![Remediation 2](images/remediation%202.png)
 
 ### Remediation 3: Disable USB Storage
 
@@ -129,7 +123,7 @@ echo "install usb-storage /bin/true" | sudo tee -a /etc/modprobe.d/disable-usb-s
 
 This prevents unauthorized data exfiltration via USB devices.
 
-![Disable USB storage](images/week7-disable-usb.png)
+![Remediation 3](images/remediation%203.png)
 
 ### Remediation 4: PAM Password Hashing
 
@@ -140,8 +134,7 @@ sudo nano /etc/pam.d/common-password
 
 Ensured secure password hashing is configured.
 
-![PAM configuration](images/week7-pam-config.png)
-
+![Remediation 4](images/remediation%204.png)
 
 ## 4. Lynis Security Audit - After Remediation
 
@@ -163,7 +156,7 @@ Lynis performed 267 tests across various security categories including:
 - SSH configuration
 - Software packages
 
-![Lynis audit running](images/week7-lynis-start.png)
+![Lynis after checking](images/lynis%20after%20checking.png)
 
 ### Lynis Results After Remediation
 
@@ -191,13 +184,19 @@ Lynis performed 267 tests across various security categories including:
 - Test and debug information: `/var/log/lynis.log`
 - Report data: `/var/log/lynis-report.dat`
 
-![Lynis audit after remediation](images/week7-lynis-rerun.png)
-
-
+![Lynis after](images/lynis%20after.png)
 
 **Note:** The hardening index decreased slightly because additional tests were performed after installing new security tools, revealing more areas for potential improvement. 
 This is normal - the more security tools installed, the more comprehensive the audit becomes, often revealing additional recommendations.
 
+### Hardening Index Comparison
+
+| Metric | Before Remediation | After Remediation | Change |
+|--------|-------------------|-------------------|--------|
+| Hardening Index | 64 | 69 | 5 |
+| Tests Performed | 268 | 267 | -1 |
+| Firewall | Active | Active | ✓ |
+| Security Tools | Minimal | Enhanced | ✓ |
 
 ## 5. Network Security Assessment with Nmap
 
@@ -226,7 +225,7 @@ nmap -sV localhost
 
 Scan completed in 7.04 seconds.
 
-![Nmap localhost scan](images/week7-nmap-localhost.png)
+![Nmap localhost](images/nmap%20localhost.png)
 
 
 ### Scanning from External Source (Workstation)
@@ -247,8 +246,7 @@ The server appeared "down" to external scans because:
 3. ICMP (ping) is blocked by default
 4. This demonstrates proper network security
 
-![Nmap external scan](images/week7-nmap-external.png)
-
+![Nmap external](images/nmap%20external.png)
 
 ## 6. Access Control Verification
 
@@ -283,8 +281,8 @@ sudo aa-status
 - 0 processes in complain mode
 - 0 processes unconfined but with profile defined
 
-![AppArmor status](images/week7-apparmor.png)
-
+![AppArmor verify 1](images/apparmor%20verify%201.png)
+![AppArmor verify 2](images/apparmor%20verify%202.png)
 
 ## 7. Service Audit
 
@@ -295,25 +293,7 @@ Listed all active services:
 systemctl list-units --type=service --state=running
 ```
 
-**Critical Services Running:**
-
-| Service | Status | Description | Justification |
-|---------|--------|-------------|---------------|
-| **ssh.service** | running | OpenSSH Secure Shell Server | **Essential** - Required for remote administration |
-| **nginx.service** | running | A high performance web server | **Required** - Web server for performance testing |
-| **redis-server.service** | running | Advanced key-value store | **Required** - Memory performance testing |
-| **fail2ban.service** | running | Fail2Ban Service | **Essential** - Intrusion detection and prevention |
-| **ufw.service** | running | Uncomplicated Firewall | **Essential** - Network security |
-| **unattended-upgrades.service** | running | Unattended Upgrades Shutdown | **Essential** - Automatic security updates |
-| **systemd-journald.service** | running | Journal Service | **System** - Logging and monitoring |
-| **systemd-logind.service** | running | User Login Management | **System** - Session management |
-| **systemd-networkd.service** | running | Network Configuration | **System** - Network management |
-| **systemd-resolved.service** | running | Network Name Resolution | **System** - DNS resolution |
-| **systemd-timesyncd.service** | running | Network Time Synchronization | **System** - Time synchronization |
-| **systemd-udevd.service** | running | Rule-based Manager for Device Events | **System** - Hardware management |
-| **rsyslog.service** | running | System Logging Service | **System** - System logs |
-| **cron.service** | running | Regular background program execution | **System** - Scheduled tasks |
-| **dbus.service** | running | D-Bus System Message Bus | **System** - Inter-process communication |
+**Services Running:**
 
 **Total Running Services:** Approximately 20 active services
 
@@ -322,8 +302,7 @@ All services are justified and necessary for either:
 - Security (fail2ban, ufw, unattended-upgrades)
 - Coursework requirements (nginx, redis, ssh)
 
-![Running services](images/week7-services.png)
-
+![Services running](images/services%20running.png)
 
 ### Verifying Critical Services Status
 
@@ -339,7 +318,7 @@ sudo systemctl is-active sshd nginx redis-server fail2ban ufw
 - fail2ban: **active**
 - ufw: **active**
 
-![Services verification](images/week7-services-check.png)
+![Checking critical services running](images/checking%20critical%20services%20running.png)
 
 
 ## 8. SSH Security Verification
@@ -361,8 +340,7 @@ sudo sshd -T | grep -i "passwordauthentication\|pubkeyauthentication\|permitroot
 - Password authentication disabled
 - Root login restricted
 
-![SSH configuration verification](images/week7-ssh-verify.png)
-
+![SSH verify](images/ssh%20verify.png)
 
 ## 9. Firewall Security Review
 
@@ -392,7 +370,7 @@ sudo ufw status verbose
 - ✅ No unnecessary ports open
 - ✅ Proper network isolation
 
-![UFW firewall status](images/week7-firewall.png)
+![Firewall verify](images/firewall%20verify.png)
 
 ## 10. System Configuration Review
 
@@ -426,8 +404,7 @@ sudo fail2ban-client status sshd
 - Network is properly isolated
 - Key-based authentication is preventing unauthorized access
 
-![System configuration review](images/week7-config-review.png)
-
+![Config review 1](images/config%20review%201.png)
 
 ### Open Ports and Listening Services
 ```bash
@@ -450,7 +427,7 @@ sudo ss -tulpn
 - ✅ DNS (53): System resolver, localhost only
 - ✅ No unexpected open ports
 
-![Open ports](images/week7-open-ports.png)
+![Config review 2](images/config%20review%202.png)
 
 
 ## 11. Security Audit Summary
