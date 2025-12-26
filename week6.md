@@ -30,7 +30,7 @@ sudo apt update
 sudo apt install stress-ng -y
 ```
 
-![Installing stress-ng](images/week6-install-stress.png)
+![Installing stress-ng](images/installing%20stress-ng.png)
 
 
 ### Installing Redis (RAM testing)
@@ -39,8 +39,7 @@ sudo apt install redis-server -y
 sudo systemctl start redis-server
 ```
 
-![Installing Redis](images/week6-install-redis.png)
-
+![Installing redis](images/installing%20redis.png)
 
 ### Installing Nginx (Server application)
 ```bash
@@ -49,7 +48,7 @@ sudo systemctl start nginx
 sudo systemctl restart nginx
 ```
 
-![Installing Nginx](images/week6-install-nginx.png)
+![Installing nginx](images/installing%20nginx.png)
 
 
 ### dd command (I/O testing)
@@ -96,8 +95,7 @@ top -bn1 | head -20
 - Memory used: 474.8 MB
 - Top process: amuser (top command) at 15.4% CPU
 
-![CPU baseline](images/week6-cpu-baseline.png)
-
+![CPU baseline](images/cpu%20baseline.png)
 
 **With Redis Running:**
 
@@ -115,7 +113,7 @@ top
 
 This shows Redis is extremely efficient and uses minimal CPU resources.
 
-![Redis running - CPU usage](images/week6-redis-running.png)
+![CPU under load 1](images/cpu%20under%20load%201.png)
 
 
 ### Test 2: Memory Performance (Redis)
@@ -131,8 +129,7 @@ free -h
 - Free: 3.5 Gi (3508.7 MB)
 - Available: 4.2 Gi
 
-![Memory baseline](images/week6-memory-baseline.png)
-
+![Memory baseline](images/memory%20baseline.png)
 
 **Load Test:**
 
@@ -147,7 +144,9 @@ redis-benchmark -t set -n 100000 -d 1000
 - Average latency: 1.573 ms
 - Memory remained stable
 
-![Redis benchmark initial test](images/week6-redis-benchmark-1.png)
+![Loading data into redis 1](images/loading%20data%20into%20redis%201.png)
+![Loading data into redis 2](images/loading%20data%20into%20redis%202.png)
+![Loading data into redis 3](images/loading%20data%20into%20redis%203.png)
 
 
 **Redis Memory Usage:**
@@ -159,7 +158,7 @@ Output: `used_memory_human:942.49K`
 
 Redis is using only 942.49KB of memory - extremely efficient!
 
-![Redis memory info](images/week6-redis-memory.png)
+![Redis memory info](images/redis%20memory%20info.png)
 
 
 **Memory with Redis under load:**
@@ -174,8 +173,7 @@ top -bn1 | grep redis
 - Free: 3.4 Gi
 - Redis process: 0.0% CPU, 0.3% MEM
 
-![Memory with Redis](images/week6-memory-redis.png)
-
+![Redis running](images/redis%20running.png)
 
 ### Test 3: Disk I/O Performance (dd command)
 
@@ -185,11 +183,11 @@ iostat -x 1 3
 ```
 
 **Baseline Results:**
-- CPU idle: 98.47%
+- CPU idle: 98.48%
 - Disk activity: minimal
 - System ready for I/O testing
 
-![I/O baseline](images/week6-io-baseline.png)
+![Input output baseline](images/Input%20output%20baseline.png)
 
 
 **Write Test:**
@@ -206,7 +204,7 @@ dd if=/dev/zero of=~/testfile bs=1M count=1024
 - Time: 13.6727 seconds
 - **Write Speed: 78.5 MB/s**
 
-![Disk write test](images/week6-disk-write.png)
+![Disk write test](images/disk%20write%20test.png)
 
 
 **Read Test:**
@@ -225,7 +223,7 @@ dd if=~/testfile of=/dev/null bs=1M
 
 Read speed is significantly faster than write speed, which is normal for most storage devices.
 
-![Disk read test](images/week6-disk-read.png)
+![Disk read test](images/disk%20read%20test.png)
 
 
 **I/O Monitoring During Test:**
@@ -238,7 +236,7 @@ iostat -x 1 3
 - Disk I/O operations visible on sda device
 - System handled I/O efficiently
 
-![iostat during I/O](images/week6-iostat.png)
+![Input output baseline](images/Input%20output%20baseline.png)
 
 Cleaned up test file:
 ```bash
@@ -259,8 +257,7 @@ ss -s
 - TCP: 10 (estab 2, closed 0)
 - Transport connections: RAW=1, UDP=2, TCP=10
 
-![Network baseline](images/week6-network-baseline.png)
-
+![Network baseline](images/network%20baseline.png)
 
 **Load Test Setup:**
 
@@ -284,7 +281,8 @@ ab -n 100 -c 10 http://localhost/test.html
 - Time per request: 6.318 [ms] (mean)
 - Transfer rate: 409.58 [Kbytes/sec]
 
-![Network test initial](images/week6-network-test-1.png)
+![Network load test 1](images/network%20load%20test%201.png)
+![Network load test 2](images/network%20load%20test%202.png)
 
 
 ## 5. Performance Bottleneck Analysis
@@ -335,8 +333,8 @@ ab -n 1000 -c 50 http://localhost/test.html
 - Time per request: 21.567 [ms] (mean)
 - Transfer rate: 599.96 [Kbytes/sec]
 
-![Nginx before optimization](images/week6-nginx-before.png)
-
+![Nginx before optimization 1](images/nginx%20before%20optimization%201.png)
+![Nginx before optimization 2](images/nginx%20before%20optimization%202.png)
 
 **Optimization Applied:**
 
@@ -367,7 +365,8 @@ ab -n 1000 -c 50 http://localhost/test.html
 - Time per request: 26.275 [ms] (mean)
 - Transfer rate: 492.47 [Kbytes/sec]
 
-![Nginx after optimization](images/week6-nginx-after.png)
+![Nginx after optimization 1](images/nginx%20after%20optimization%201.png)
+![Nginx after optimization 2](images/nginx%20after%20optimization%202.png)
 
 **Note:** In this case, the second test showed slightly lower performance, which could be due to system state or timing. The important part is demonstrating the optimization process and measurement methodology.
 
@@ -383,9 +382,6 @@ cat /proc/sys/vm/swappiness
 
 Default value: **60**
 
-![Swappiness before](images/week6-swappiness-before.png)
-
-
 Tested Redis performance with default swappiness:
 ```bash
 redis-benchmark -t set -n 200000 -d 1000
@@ -395,8 +391,11 @@ redis-benchmark -t set -n 200000 -d 1000
 - 200,000 requests completed in 9.78 seconds
 - **Throughput: 19,859.00 requests per second (average)**
 - Average latency: 1.595 ms
+ 
+![Before swappiness change 1](images/before%20swappiness%20change%201.png)
+![Before swappiness change 2](images/before%20swappiness%20change%202.png)
+![Before swappiness change 3](images/before%20swappiness%20chage%203.png)
 
-![Redis before swappiness optimization](images/week6-redis-before-swap.png)
 
 **Optimization Applied:**
 
@@ -409,16 +408,13 @@ Output: `vm.swappiness = 10`
 
 This tells the system to avoid using swap and keep data in RAM as much as possible, which improves performance for memory-intensive applications like Redis.
 
-![Setting swappiness](images/week6-set-swappiness.png)
-
 
 Made the change permanent:
 ```bash
 echo "vm.swappiness=10" | sudo tee -a /etc/sysctl.conf
 ```
 
-![Permanent swappiness](images/week6-swappiness-permanent.png)
-
+![After swappiness change](images/after%20swappiness%20change.png)
 
 **After Optimization:**
 
@@ -432,7 +428,9 @@ redis-benchmark -t set -n 200000 -d 1000
 - **Throughput: 20,454.08 requests per second (average)**
 - Average latency: 1.518 ms
 
-![Redis after swappiness optimization](images/week6-redis-after-swap.png)
+![After swappiness change 1](images/after%20swappiness%20change%201.png)
+![After swappiness change 2](images/after%20swappiness%20change%202.png)
+![After swappiness change 3](images/after%20swappiness%20change%203.png)
 
 **Optimization Results:**
 
