@@ -33,48 +33,26 @@ sudo apt install nmap -y
 ```bash
 sudo lynis audit system
 ```
-
-Lynis performed 267 tests across various security categories including:
-- Boot and services
-- Kernel configuration
-- Memory and processes
-- Users, groups, and authentication
-- File systems
-- Storage
-- Network configuration
-- Firewall
-- SSH configuration
-- Software packages
-
-![Lynis audit running](images/week7-lynis-start.png)
-
-### Initial Lynis Results (Before Remediation)
-
 **Lynis Security Scan Details:**
-- **Hardening Index: 69** out of 100
-- Tests performed: 267
+- **Hardening Index: 64** out of 100
+- Tests performed: 268
 - Plugins enabled: 1
 
 **Components Status:**
 - Firewall: [V] (Verified - UFW active)
-- Malware scanner: [X] (Not installed)
+- Malware scanner: [X] (Not installed - not critical for this environment)
 
-**Scan Mode:**
-- Normal [V]
-- Forensics [ ]
-- Integration [ ]
-- Pentest [ ]
+![Lynis results before remediation](images/week7-lynis-after.png)
 
-**Lynis Modules:**
-- Compliance status: [?]
-- Security audit: [V]
-- Vulnerability scan: [V]
+### Hardening Index Comparison
 
-**Files:**
-- Test and debug information: `/var/log/lynis.log`
-- Report data: `/var/log/lynis-report.dat`
+| Metric | Before Remediation | After Remediation | Change |
+|--------|-------------------|-------------------|--------|
+| Hardening Index | 64 | 69 | 5 |
+| Tests Performed | 268 | 267 | -1 |
+| Firewall | Active | Active | ✓ |
+| Security Tools | Minimal | Enhanced | ✓ |
 
-![Lynis initial results](images/week7-lynis-before.png)
 
 ### Lynis Suggestions for Improvement
 
@@ -173,31 +151,49 @@ After implementing security improvements, I re-ran the Lynis audit:
 ```bash
 sudo lynis audit system
 ```
+Lynis performed 267 tests across various security categories including:
+- Boot and services
+- Kernel configuration
+- Memory and processes
+- Users, groups, and authentication
+- File systems
+- Storage
+- Network configuration
+- Firewall
+- SSH configuration
+- Software packages
 
-![Lynis audit after remediation](images/week7-lynis-rerun.png)
-
+![Lynis audit running](images/week7-lynis-start.png)
 
 ### Lynis Results After Remediation
 
 **Lynis Security Scan Details:**
-- **Hardening Index: 64** out of 100
-- Tests performed: 268
+- **Hardening Index: 69** out of 100
+- Tests performed: 267
 - Plugins enabled: 1
 
 **Components Status:**
 - Firewall: [V] (Verified - UFW active)
-- Malware scanner: [X] (Not installed - not critical for this environment)
+- Malware scanner: [X] (Not installed)
 
-![Lynis results after remediation](images/week7-lynis-after.png)
+**Scan Mode:**
+- Normal [V]
+- Forensics [ ]
+- Integration [ ]
+- Pentest [ ]
 
-### Hardening Index Comparison
+**Lynis Modules:**
+- Compliance status: [?]
+- Security audit: [V]
+- Vulnerability scan: [V]
 
-| Metric | Before Remediation | After Remediation | Change |
-|--------|-------------------|-------------------|--------|
-| Hardening Index | 69 | 64 | -5 |
-| Tests Performed | 267 | 268 | +1 |
-| Firewall | Active | Active | ✓ |
-| Security Tools | Minimal | Enhanced | ✓ |
+**Files:**
+- Test and debug information: `/var/log/lynis.log`
+- Report data: `/var/log/lynis-report.dat`
+
+![Lynis audit after remediation](images/week7-lynis-rerun.png)
+
+
 
 **Note:** The hardening index decreased slightly because additional tests were performed after installing new security tools, revealing more areas for potential improvement. 
 This is normal - the more security tools installed, the more comprehensive the audit becomes, often revealing additional recommendations.
