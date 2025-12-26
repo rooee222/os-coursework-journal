@@ -14,8 +14,8 @@ I'm configuring an Ubuntu Server system accessible only via SSH from an Ubuntu D
 - [Week 3: Application Selection](week3.md)
 - [Week 4: Initial Configuration & Security](week4.md)
 - [Week 5: Advanced Security and Monitoring](week5.md)
-- [Week 6: Performance Evaluation](week6.md)
-- [Week 7: Security Audit](week7.md)
+- [Week 6: Performance Evaluation and Analysis](week6.md)
+- [Week 7: Security Audit and System Evaluation](week7.md)
 
 ## System Architecture
 
